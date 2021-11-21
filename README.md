@@ -24,9 +24,9 @@ RealityFit is a fitness application for IOS that delieves for it's users the pos
 * How to run the program
 * Download The project from GitHub
 * run pod install on terminal
-* 
+* open xcworkspace
 ```
-code blocks for commands
+pod install
 ```
 
 ## Help
