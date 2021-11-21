@@ -28,6 +28,9 @@ RealityFit is a fitness application for IOS that delieves for it's users the pos
 ```
 pod install
 ```
+```
+npm install
+```
 
 ## Help
 
