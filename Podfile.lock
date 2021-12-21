@@ -15,12 +15,14 @@ PODS:
     - "GoogleToolboxForMac/NSString+URLArguments (= 2.3.2)"
   - "GoogleToolboxForMac/NSString+URLArguments (2.3.2)"
   - GTMSessionFetcher/Core (1.7.0)
+  - MapKitSearchView (2.0.0)
   - SwiftyJSON (4.3.0)
 
 DEPENDENCIES:
   - Alamofire (~> 5.4)
   - AlamofireImage (~> 4.1)
   - GoogleSignIn (< 5.0.0)
+  - MapKitSearchView
   - SwiftyJSON (~> 4.0)
 
 SPEC REPOS:
@@ -30,6 +32,7 @@ SPEC REPOS:
     - GoogleSignIn
     - GoogleToolboxForMac
     - GTMSessionFetcher
+    - MapKitSearchView
     - SwiftyJSON
 
 SPEC CHECKSUMS:
@@ -38,8 +41,9 @@ SPEC CHECKSUMS:
   GoogleSignIn: 7ff245e1a7b26d379099d3243a562f5747e23d39
   GoogleToolboxForMac: 8bef7c7c5cf7291c687cf5354f39f9db6399ad34
   GTMSessionFetcher: 43748f93435c2aa068b1cbe39655aaf600652e91
+  MapKitSearchView: 27cd67b3033c31904b128cda9367cd94b48c062e
   SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
 
-PODFILE CHECKSUM: 6a93c0aa655fd16da735dc98d968fa2cdf71b39b
+PODFILE CHECKSUM: 94559efb8a27a673211399603ce5ba321d925b08
 
 COCOAPODS: 1.11.2

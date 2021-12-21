@@ -8,8 +8,9 @@
 import UIKit
 import GoogleSignIn
 import Alamofire
+import LocalAuthentication
 
-class SignInViewController: UIViewController, GIDSignInUIDelegate {
+class SignInViewController: UIViewController, GIDSignInUIDelegate, UITextFieldDelegate {
     
     
     @IBOutlet weak var loginLabel: UITextField!
@@ -18,13 +19,27 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate {
     
     @IBOutlet weak var passwordTextField: UITextField!
     
+    var context = LAContext()
+    var err : NSError?
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        initializeHideKeyboard()
+
+        emailTextField.attributedPlaceholder = NSAttributedString(
+            string: "Email",
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        passwordTextField.attributedPlaceholder = NSAttributedString(
+            string: "Password",
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
         
-      
         
-        
+        addBottomBorderTo(textField: emailTextField)
+        addBottomBorderTo(textField: passwordTextField)
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
         
         GIDSignIn.sharedInstance().uiDelegate = self
               GIDSignIn.sharedInstance().signInSilently()
@@ -41,6 +56,15 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate {
 
         // Do any additional setup after loading the view.
     }
+    
+    
+    func addBottomBorderTo(textField: UITextField) {
+        let layer = CALayer()
+        layer.backgroundColor = UIColor.white.cgColor
+        layer.frame = CGRect(x: 0.0, y: textField.frame.size.height-2.0, width: textField.frame.size.width, height: 2.0)
+    }
+    
+    
     @objc func signOut(sender: UIButton)
        {
            print ("signOut")
@@ -84,19 +108,45 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate {
         
         }
     
-    func showAlert(title:String, message:String){
-                  let alert = UIAlertController(title: title, message: message,preferredStyle: .alert)
-                  let action = UIAlertAction(title:"ok", style: .cancel, handler:nil)
-                  alert.addAction(action)
-                  self.present(alert, animated: true, completion: nil)
+    @IBAction func touchIdLogin(_ sender: Any) {
+        
+        let localString = "Biometric Authentication"
+        let context = LAContext()
+           var error: NSError?
 
-}
+           if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
+               let reason = "Identify yourself!"
+
+               context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) {
+                   [weak self] success, authenticationError in
+
+                   DispatchQueue.main.async {
+                       if success {
+                           self!.performSegue(withIdentifier: "homeSegue", sender: IndexPath.self)
+                       } else {
+                           // error
+                       }
+                   }
+               }
+           } else {
+               // no biometry
+    }
+    }
     
+    
+//    func showAlert(title:String, message:String){
+//                  let alert = UIAlertController(title: title, message: message,preferredStyle: .alert)
+//                  let action = UIAlertAction(title:"ok", style: .cancel, handler:nil)
+//                  alert.addAction(action)
+//                  self.present(alert, animated: true, completion: nil)
+//
+//}
+//
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "homeSegue" {
           //  let indexPath = sender as! IndexPath
-            let destination = segue.destination as! HomeViewController
-            destination.username = emailTextField.text
+//            let destination = segue.destination as! HomeViewController
+           // destination.username = emailTextField.text
             
         }
     
@@ -109,3 +159,18 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate {
 }
         
 }
+extension SignInViewController {
+ func initializeHideKeyboard(){
+ //Declare a Tap Gesture Recognizer which will trigger our dismissMyKeyboard() function
+ let tap: UITapGestureRecognizer = UITapGestureRecognizer(
+ target: self,
+ action: #selector(dismissMyKeyboard))
+ //Add this tap gesture recognizer to the parent view
+ view.addGestureRecognizer(tap)
+ }
+ @objc func dismissMyKeyboard(){
+ //endEditing causes the view (or one of its embedded text fields) to resign the first responder status.
+ //In short- Dismiss the active keyboard.
+ view.endEditing(true)
+ }
+ }

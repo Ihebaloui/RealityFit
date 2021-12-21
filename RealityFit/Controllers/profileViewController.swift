@@ -55,6 +55,8 @@ class profileViewController: UIViewController {
         nom.text = nomConnected
         print(_id)
         setupLibrary()
+        
+        
 
         
 
@@ -87,13 +89,13 @@ class profileViewController: UIViewController {
         
     }
     
-    func showAlert(title:String, message:String){
-                  let alert = UIAlertController(title: title, message: message,preferredStyle: .alert)
-                  let action = UIAlertAction(title:"ok", style: .cancel, handler:nil)
-                  alert.addAction(action)
-                  self.present(alert, animated: true, completion: nil)
-
-}
+//    func showAlert(title:String, message:String){
+//                  let alert = UIAlertController(title: title, message: message,preferredStyle: .alert)
+//                  let action = UIAlertAction(title:"ok", style: .cancel, handler:nil)
+//                  alert.addAction(action)
+//                  self.present(alert, animated: true, completion: nil)
+//
+//}
     
     
     @IBAction func confirmUpdate(_ sender: Any) {

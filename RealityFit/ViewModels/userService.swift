@@ -19,7 +19,7 @@ class UserService{
 
     func register(user : userModel,completionHandler:@escaping (Bool)->()){
         let headers: HTTPHeaders = [.contentType("application/json")]
-        AF.request("http://172.17.9.26:3000/users/register", method: .post, parameters: user,encoder: JSONParameterEncoder.default, headers: headers ).response{ response in debugPrint(response)
+        AF.request(HOST+"/users/register", method: .post, parameters: user,encoder: JSONParameterEncoder.default, headers: headers ).response{ response in debugPrint(response)
             switch response.result{
             case .success(let data):
                 do {
@@ -30,10 +30,13 @@ class UserService{
                         UserDefaults.standard.setValue(jsonData["_id"].stringValue, forKey: "_id")
                         UserDefaults.standard.setValue(jsonData["nom"].stringValue, forKey: "nom")
                         UserDefaults.standard.setValue(jsonData["prenom"].stringValue, forKey: "prenom")
+                        UserDefaults.standard.setValue(jsonData["isVerified"].stringValue, forKey: "isVerified")
+                        
                         print(jsonData["_id"].stringValue)
                         completionHandler(true)
 
                     }else{
+                       
                         completionHandler(false)
                     }
                     
@@ -52,7 +55,7 @@ class UserService{
     
     func login(email: String, password: String,completionHandler:@escaping (Bool)->()){
          let headers: HTTPHeaders = [.contentType("application/json")]
-         AF.request("http://172.17.9.26:3000/users/login", method: .post, parameters: ["email":email, "password": password],encoder: JSONParameterEncoder.default, headers: headers ).response{ response in debugPrint(response)
+         AF.request(HOST+"/users/login", method: .post, parameters: ["email":email, "password": password],encoder: JSONParameterEncoder.default, headers: headers ).response{ response in debugPrint(response)
              switch response.result{
              case .success(let data):
                  do {
@@ -90,7 +93,7 @@ class UserService{
        
       
         let headers: HTTPHeaders = [.contentType("application/json"),.authorization(bearerToken:(UserDefaults.standard.string(forKey: "token")!)) ]
-        AF.request("http://172.17.9.26:3000/users/"+_id, method: .get,parameters:[ "_id":UserDefaults.standard.value(forKey: "_id")!] , headers: headers ).response{ response in
+        AF.request(HOST+"/users/"+_id, method: .get,parameters:[ "_id":UserDefaults.standard.value(forKey: "_id")!] , headers: headers ).response{ response in
             switch response.result{
             case .success(let data):
                 do {
@@ -120,7 +123,7 @@ class UserService{
     
    func updateProfile(_id:String,user : userModel,completionHandler:@escaping (Bool)->()){
         let headers: HTTPHeaders = [.contentType("application/x-www-form-urlencoded"),.authorization(bearerToken:(UserDefaults.standard.string(forKey: "token")!)) ]
-       AF.request("http://172.17.9.26:3000/users/"+_id,  method:   .patch ,parameters: user , headers: headers ).response{ response in
+       AF.request(HOST+"/users/"+_id,  method:   .patch ,parameters: user , headers: headers ).response{ response in
             switch response.result{
             case .success(let data):
                 do {
@@ -151,7 +154,7 @@ class UserService{
     
     func verifyCode(_id:String,code: String,completionHandler:@escaping (Bool)->()){
          let headers: HTTPHeaders = [.contentType("application/x-www-form-urlencoded"),.authorization(bearerToken:(UserDefaults.standard.string(forKey: "_id")!)) ]
-        AF.request("http://172.17.9.26:3000/users/verify-email/"+_id,  method:   .patch ,parameters: ["verifCode":code] ,  headers: headers ).response{ response in
+        AF.request(HOST+"/users/verify-email/"+_id,  method:   .patch ,parameters: ["verifCode":code] ,  headers: headers ).response{ response in
              switch response.result{
              case .success(let data):
                  do {

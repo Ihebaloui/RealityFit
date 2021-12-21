@@ -17,8 +17,13 @@
 		3C494985273FEA04008A0748 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C494984273FEA04008A0748 /* Assets.xcassets */; };
 		3C494988273FEA04008A0748 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C494986273FEA04008A0748 /* LaunchScreen.storyboard */; };
 		4F0B86B8275D3BD600A7D4A2 /* profileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0B86B7275D3BD600A7D4A2 /* profileViewController.swift */; };
+		4F1AB07B276B9D6D008049B4 /* utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F1AB07A276B9D6D008049B4 /* utils.swift */; };
+		4F1AB07E276BA94B008049B4 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F1AB07D276BA94B008049B4 /* Reachability.swift */; };
+		4F1CC8F627664992007256F6 /* workoutTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F1CC8F527664992007256F6 /* workoutTableViewController.swift */; };
 		4F2CE2C5275A7F1000C2BA42 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2CE2C4275A7F1000C2BA42 /* SignUpViewController.swift */; };
 		4F4A65F62763941F0008C0D3 /* sessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4A65F52763941F0008C0D3 /* sessionViewController.swift */; };
+		4F508A5E276BD37F0001B0EA /* mapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F508A5D276BD37F0001B0EA /* mapViewController.swift */; };
+		4F5C38342770D08C006C7537 /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5C38332770D08C006C7537 /* CommentsViewController.swift */; };
 		4F7AFE5A276276DB00EA8427 /* codeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7AFE59276276DB00EA8427 /* codeViewController.swift */; };
 		4FB5E1832749206700506494 /* ArViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB5E1822749206700506494 /* ArViewController.swift */; };
 		4FB5E18527492C9500506494 /* reactshoe.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 4FB5E18427492C9500506494 /* reactshoe.usdz */; };
@@ -44,8 +49,13 @@
 		3C494984273FEA04008A0748 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3C494987273FEA04008A0748 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4F0B86B7275D3BD600A7D4A2 /* profileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = profileViewController.swift; sourceTree = "<group>"; };
+		4F1AB07A276B9D6D008049B4 /* utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = utils.swift; sourceTree = "<group>"; };
+		4F1AB07D276BA94B008049B4 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Reachability.swift; path = "../../../../Downloads/Reachability.swift-master/Sources/Reachability.swift"; sourceTree = "<group>"; };
+		4F1CC8F527664992007256F6 /* workoutTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = workoutTableViewController.swift; sourceTree = "<group>"; };
 		4F2CE2C4275A7F1000C2BA42 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		4F4A65F52763941F0008C0D3 /* sessionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sessionViewController.swift; sourceTree = "<group>"; };
+		4F508A5D276BD37F0001B0EA /* mapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mapViewController.swift; sourceTree = "<group>"; };
+		4F5C38332770D08C006C7537 /* CommentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsViewController.swift; sourceTree = "<group>"; };
 		4F7AFE59276276DB00EA8427 /* codeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = codeViewController.swift; sourceTree = "<group>"; };
 		4FB5E1822749206700506494 /* ArViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArViewController.swift; sourceTree = "<group>"; };
 		4FB5E18427492C9500506494 /* reactshoe.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = reactshoe.usdz; sourceTree = "<group>"; };
@@ -103,6 +113,7 @@
 		3C494977273FEA01008A0748 /* RealityFit */ = {
 			isa = PBXGroup;
 			children = (
+				4F1AB07C276BA8C0008049B4 /* Utility */,
 				4FFD5BAA2747E54D00F98FBB /* Common */,
 				4FFD5BA92747E53A00F98FBB /* Controllers */,
 				4FFD5BA82747E51400F98FBB /* API Service */,
@@ -115,6 +126,15 @@
 				3C494981273FEA01008A0748 /* RealityFit.xcdatamodeld */,
 			);
 			path = RealityFit;
+			sourceTree = "<group>";
+		};
+		4F1AB07C276BA8C0008049B4 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				4F1AB07D276BA94B008049B4 /* Reachability.swift */,
+				4F1AB07A276B9D6D008049B4 /* utils.swift */,
+			);
+			path = Utility;
 			sourceTree = "<group>";
 		};
 		4FB5E186274937CA00506494 /* Frameworks */ = {
@@ -166,6 +186,9 @@
 				4F0B86B7275D3BD600A7D4A2 /* profileViewController.swift */,
 				4F7AFE59276276DB00EA8427 /* codeViewController.swift */,
 				4F4A65F52763941F0008C0D3 /* sessionViewController.swift */,
+				4F1CC8F527664992007256F6 /* workoutTableViewController.swift */,
+				4F508A5D276BD37F0001B0EA /* mapViewController.swift */,
+				4F5C38332770D08C006C7537 /* CommentsViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -315,12 +338,17 @@
 			files = (
 				4F2CE2C5275A7F1000C2BA42 /* SignUpViewController.swift in Sources */,
 				1385CE4D2753BD6100E3954F /* userService.swift in Sources */,
+				4F5C38342770D08C006C7537 /* CommentsViewController.swift in Sources */,
+				4F1AB07E276BA94B008049B4 /* Reachability.swift in Sources */,
 				4F0B86B8275D3BD600A7D4A2 /* profileViewController.swift in Sources */,
 				4FFD5BB02747E64400F98FBB /* SignInViewController.swift in Sources */,
 				4FF9BE71275A90BB0012BADE /* exerciseModel.swift in Sources */,
 				1385CE4F2753BEF400E3954F /* userModel.swift in Sources */,
 				4FFD5BAC2747E61500F98FBB /* HomeViewController.swift in Sources */,
 				4FFD5BB22747E9D500F98FBB /* moreDetailsViewController.swift in Sources */,
+				4F1CC8F627664992007256F6 /* workoutTableViewController.swift in Sources */,
+				4F1AB07B276B9D6D008049B4 /* utils.swift in Sources */,
+				4F508A5E276BD37F0001B0EA /* mapViewController.swift in Sources */,
 				4FB5E1832749206700506494 /* ArViewController.swift in Sources */,
 				4F4A65F62763941F0008C0D3 /* sessionViewController.swift in Sources */,
 				3C49497D273FEA01008A0748 /* ViewController.swift in Sources */,
@@ -481,7 +509,9 @@
 				DEVELOPMENT_TEAM = 84UU6V35AD;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RealityFit/Info.plist;
-				INFOPLIST_KEY_NSCameraUsageDescription = "$(PRODUCT_NAME)";
+				INFOPLIST_KEY_NSCameraUsageDescription = RealityFitIos;
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "Do you want to add  Touch Id  Biometrics?";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Please allow us to access your current location";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -511,7 +541,9 @@
 				DEVELOPMENT_TEAM = 84UU6V35AD;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = RealityFit/Info.plist;
-				INFOPLIST_KEY_NSCameraUsageDescription = "$(PRODUCT_NAME)";
+				INFOPLIST_KEY_NSCameraUsageDescription = RealityFitIos;
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "Do you want to add  Touch Id  Biometrics?";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Please allow us to access your current location";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

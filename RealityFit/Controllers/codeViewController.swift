@@ -9,7 +9,10 @@ import UIKit
 
 class codeViewController: UIViewController, UITextFieldDelegate {
     
+    let isVerified = UserDefaults.standard.string(forKey: "isVerified")!
+    var x :String!="false"
     
+
     @IBOutlet weak var firstDigit: UITextField!
     
     
@@ -25,6 +28,7 @@ class codeViewController: UIViewController, UITextFieldDelegate {
     
     var email: String?
     let _id = UserDefaults.standard.string(forKey: "_id")!
+    
 
     
     
@@ -39,14 +43,41 @@ class codeViewController: UIViewController, UITextFieldDelegate {
         self.fourthDigit.delegate = self
         self.fifthDigit.delegate = self
         self.sixthDigit.delegate = self
+        self.firstDigit.addTarget(self, action: #selector(self.changeCharacter), for: .editingChanged)
+        self.secondDigit.addTarget(self, action: #selector(self.changeCharacter), for: .editingChanged)
+        self.thirrdDigit.addTarget(self, action: #selector(self.changeCharacter), for: .editingChanged)
+        self.fourthDigit.addTarget(self, action: #selector(self.changeCharacter), for: .editingChanged)
+        self.fifthDigit.addTarget(self, action: #selector(self.changeCharacter), for: .editingChanged)
+        self.sixthDigit.addTarget(self, action: #selector(self.changeCharacter), for: .editingChanged)
         
-        let components =  email!.components(separatedBy: "@")
+        
+        
+      let components =  email!.components(separatedBy: "@")
         let result = hideMidChars(components.first!) + "@" + components.last!
         usernameEmail.text = result
-       // print(_id)
-        // Do any additional setup after loading the view.
+        print(_id)
+      
     }
     
+    
+    @objc func changeCharacter(textField: UITextField){
+        if textField.text?.utf8.count == 1 {
+            switch textField{
+            case firstDigit:
+                secondDigit.becomeFirstResponder()
+            case secondDigit:
+                thirrdDigit.becomeFirstResponder()
+            case thirrdDigit:
+                fourthDigit.becomeFirstResponder()
+            case fourthDigit:
+                fifthDigit.becomeFirstResponder()
+            case fifthDigit:
+                sixthDigit.becomeFirstResponder()
+            default:
+                break
+            }
+        }
+    }
 
     
     
@@ -76,9 +107,11 @@ class codeViewController: UIViewController, UITextFieldDelegate {
         }
     
     
+    
     func textFieldDidBeginEditing(textField: UITextField) {
-        if (textField == firstDigit) {
-           textField.text = ""
+        if !(firstDigit.text == "") {
+           
+            secondDigit.becomeFirstResponder()
         }
         else if (textField == secondDigit) {
             textField.text = ""        }
@@ -91,40 +124,50 @@ class codeViewController: UIViewController, UITextFieldDelegate {
     }
  
     
-    
+//    func showAlert(title:String, message:String){
+//                  let alert = UIAlertController(title: title, message: message,preferredStyle: .alert)
+//                  let action = UIAlertAction(title:"ok", style: .cancel, handler:nil)
+//                  alert.addAction(action)
+//                  self.present(alert, animated: true, completion: nil)
+//
+//}
     @IBAction func confirmVerif(_ sender: Any) {
+        
+        var x : String
+        x = "false"
+      
         let first_digit =  firstDigit.text!
         let second_digit =  secondDigit.text!
         let third_digit =  thirrdDigit.text!
         let fourth_digit =  fourthDigit.text!
         let fifth_digit =  fifthDigit.text!
         let sixth_digit =  sixthDigit.text!
-        
+
         let code = String(first_digit+second_digit+third_digit+fourth_digit+fifth_digit+sixth_digit)
-        
+
         //print(code)
       //  let user = userModel(_id:"",nom: "", prenom: "", email: "", password: "",gender: "", age: "", weight: "", height: "",   experience: "", goal: "", token: "")
-        
+
         UserService.shareinstance.verifyCode(_id: _id, code: code, completionHandler: {
             (isSuccess) in
             if isSuccess{
-               print("jawek behy")
+         
                 self.performSegue(withIdentifier: "loginSegue", sender: IndexPath.self)
-
-            } else {
-                self.showAlert(title: "Failure", message: "wrong code")
             }
+            else
+               
+            {self.showAlert(title: "failure", message: "check verify code");}
+          
+            
         })
-        
-        
-    }
-    func showAlert(title:String, message:String){
-                  let alert = UIAlertController(title: title, message: message,preferredStyle: .alert)
-                  let action = UIAlertAction(title:"ok", style: .cancel, handler:nil)
-                  alert.addAction(action)
-                  self.present(alert, animated: true, completion: nil)
+    
+       
+      
 
-}
+ 
+     
+    }
+   
 
     
 }

@@ -25,12 +25,46 @@ class SignUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        initializeHideKeyboard()
+        nomtextField.attributedPlaceholder = NSAttributedString(
+            string: "nom",
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        prenomTextField.attributedPlaceholder = NSAttributedString(
+            string: "prenom",
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        passwordTextField.attributedPlaceholder = NSAttributedString(
+            string: "Password",
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
         
+       confirmPasswordtextField.attributedPlaceholder = NSAttributedString(
+            string: "Confirm Password",
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        emailTextField.attributedPlaceholder = NSAttributedString(
+             string: "Email",
+             attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        
+        
+
         // Do any additional setup after loading the view.
     }
     
     
-    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+       if textField == nomtextField {
+          textField.resignFirstResponder()
+          prenomTextField.becomeFirstResponder()
+       } else if textField == prenomTextField {
+          textField.resignFirstResponder()
+          emailTextField.becomeFirstResponder()
+       } else if textField == emailTextField {
+          textField.resignFirstResponder()
+           passwordTextField.becomeFirstResponder()
+       }else if textField == passwordTextField {
+           textField.resignFirstResponder()
+            confirmPasswordtextField.becomeFirstResponder()
+        }
+      return true
+     }
     
     
     @IBAction func signUpButton(_ sender: Any) {
@@ -100,15 +134,15 @@ class SignUpViewController: UIViewController {
     
     
     
-    
-    func showAlert(title:String, message:String){
-        let alert = UIAlertController(title: title, message: message,preferredStyle: .alert)
-        let action = UIAlertAction(title:"ok", style: .cancel, handler:nil)
-        alert.addAction(action)
-        self.present(alert, animated: true, completion: nil)
-        
-    }
-    
+//    
+//    func showAlert(title:String, message:String){
+//        let alert = UIAlertController(title: title, message: message,preferredStyle: .alert)
+//        let action = UIAlertAction(title:"ok", style: .cancel, handler:nil)
+//        alert.addAction(action)
+//        self.present(alert, animated: true, completion: nil)
+//        
+//    }
+//    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "homeSegue3" {
@@ -130,3 +164,19 @@ class SignUpViewController: UIViewController {
     
     
 }
+extension SignUpViewController {
+ func initializeHideKeyboard(){
+ //Declare a Tap Gesture Recognizer which will trigger our dismissMyKeyboard() function
+ let tap: UITapGestureRecognizer = UITapGestureRecognizer(
+ target: self,
+ action: #selector(dismissMyKeyboard))
+ //Add this tap gesture recognizer to the parent view
+ view.addGestureRecognizer(tap)
+ }
+ @objc func dismissMyKeyboard(){
+ //endEditing causes the view (or one of its embedded text fields) to resign the first responder status.
+ //In short- Dismiss the active keyboard.
+ view.endEditing(true)
+ }
+ }
+

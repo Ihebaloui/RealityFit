@@ -16,8 +16,21 @@ class sessionViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-       isKeyPresentInUserDefaults(key: "token")
-        print(token)
+        
+        
+        
+        if reachability.connection == .unavailable {
+            print("jawek mesh behy")
+            self.showAlert(title: "Connectivity Problem", message: "Please check your internet connection ")
+        }else
+        {
+            isKeyPresentInUserDefaults(key: "token")
+             print(token)
+            
+        }
+        
+        
+      
         
     }
     
