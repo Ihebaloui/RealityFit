@@ -11,7 +11,9 @@ target 'RealityFit' do
   pod 'SwiftyJSON', '~> 4.0'
   pod 'AlamofireImage', '~> 4.1'
   pod 'MapKitSearchView'
-
+  pod 'Braintree', '~> 4.22.0'
+  pod 'AlamofireNetworkActivityIndicator', '~> 3.1'
+  pod 'Kingfisher', '~> 7.0'	
 
 
 end

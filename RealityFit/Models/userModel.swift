@@ -22,7 +22,7 @@ struct userModel : Codable{
     let experience:String?
     let goal:String?
     public let token:String?
-
+  
     
     
 

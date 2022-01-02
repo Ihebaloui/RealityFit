@@ -54,6 +54,39 @@ class exerciseService{
              }
          }
      }
+    func payPlan(PlanId:String,completionHandler:@escaping (Bool)->()){
+       
+        let headers: HTTPHeaders = [.contentType("application/x-www-form-urlencoded"),.authorization(bearerToken:(UserDefaults.standard.string(forKey: "token")!)) ]
+        AF.request(HOST+"/plan/"+PlanId,  method:   .patch ,  headers: headers ).response{ response in
+             switch response.result{
+             case .success(let data):
+                 do {
+                     let json  = try JSONSerialization.jsonObject(with: data!, options: [])
+                     print(json)
+//                     print(response.response.s)
+                     if response.response?.statusCode == 201{
+                         //let jsonData = JSON(response.data!)
+                         print("jawek behy ya jon")
+                         //let user = self.makeItem(jsonItem: jsonData)
+                         completionHandler(true)
+
+                         //print(user)
+                     }else{
+                         completionHandler(false)
+                     }
+                     
+                 } catch  {
+                     print(error.localizedDescription)
+                     completionHandler(false)
+                     
+                     
+                 }
+             case .failure(let err):
+                 print("eeee")
+                 print(err.localizedDescription)
+             }
+         }
+     }
    
     
 }

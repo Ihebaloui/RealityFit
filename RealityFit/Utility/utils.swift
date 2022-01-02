@@ -7,7 +7,7 @@
 import UIKit
 import Foundation
 
-var HOST = "http://172.17.1.20:3000"
+var HOST = "http://172.17.1.1:8888"
 var reachability = try! Reachability()
 
 
@@ -17,7 +17,8 @@ extension UIViewController {
     func showSpinner(){
         aView = UIView(frame: self.view.bounds)
         aView?.backgroundColor = UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.2)
-        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "noInternet") as! noInternetViewController
         let ai = UIActivityIndicatorView(style: .whiteLarge)
         ai.center = aView!.center
         ai.startAnimating()
@@ -25,9 +26,13 @@ extension UIViewController {
         self.view.addSubview(aView!)
         Timer.scheduledTimer(withTimeInterval: 3.0, repeats: false){(t) in
             self.removeSpinner()
-            self.showAlert(title: "Connectivity Problem", message: "Please check your internet connection ")
-
+           // self.showAlert(title: "Connectivity Problem", message: "Please check your internet connection ")
+           
+            
         }
+        vc.modalPresentationStyle = .fullScreen
+        vc.modalTransitionStyle = .crossDissolve
+        self.present(vc, animated:true, completion:nil)
     }
     
     func removeSpinner(){

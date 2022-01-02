@@ -18,21 +18,27 @@
 		3C494988273FEA04008A0748 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C494986273FEA04008A0748 /* LaunchScreen.storyboard */; };
 		4F0B86B8275D3BD600A7D4A2 /* profileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0B86B7275D3BD600A7D4A2 /* profileViewController.swift */; };
 		4F1AB07B276B9D6D008049B4 /* utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F1AB07A276B9D6D008049B4 /* utils.swift */; };
-		4F1AB07E276BA94B008049B4 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F1AB07D276BA94B008049B4 /* Reachability.swift */; };
 		4F1CC8F627664992007256F6 /* workoutTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F1CC8F527664992007256F6 /* workoutTableViewController.swift */; };
 		4F2CE2C5275A7F1000C2BA42 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2CE2C4275A7F1000C2BA42 /* SignUpViewController.swift */; };
+		4F2D4E2A2777870A000C4020 /* planDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2D4E292777870A000C4020 /* planDetailViewController.swift */; };
 		4F4A65F62763941F0008C0D3 /* sessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4A65F52763941F0008C0D3 /* sessionViewController.swift */; };
 		4F508A5E276BD37F0001B0EA /* mapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F508A5D276BD37F0001B0EA /* mapViewController.swift */; };
+		4F5BFDE22773A915003FCF18 /* ZoomAndSnapFlowLayout.swift  .swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5BFDE12773A915003FCF18 /* ZoomAndSnapFlowLayout.swift  .swift */; };
+		4F5BFDE42773A953003FCF18 /* CollectionViewCell.swift  .swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5BFDE32773A953003FCF18 /* CollectionViewCell.swift  .swift */; };
 		4F5C38342770D08C006C7537 /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5C38332770D08C006C7537 /* CommentsViewController.swift */; };
 		4F7AFE5A276276DB00EA8427 /* codeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7AFE59276276DB00EA8427 /* codeViewController.swift */; };
+		4F9B987D2780DAE400ED81CE /* realityFitLaunch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F9B987C2780DAE400ED81CE /* realityFitLaunch.storyboard */; };
 		4FB5E1832749206700506494 /* ArViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB5E1822749206700506494 /* ArViewController.swift */; };
 		4FB5E18527492C9500506494 /* reactshoe.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 4FB5E18427492C9500506494 /* reactshoe.usdz */; };
+		4FE6843C2780A1D800777D60 /* noInternetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE6843B2780A1D800777D60 /* noInternetViewController.swift */; };
+		4FED4049277797A900220D3F /* boughtPlansViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FED4048277797A900220D3F /* boughtPlansViewController.swift */; };
 		4FF9BE71275A90BB0012BADE /* exerciseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF9BE70275A90BB0012BADE /* exerciseModel.swift */; };
 		4FF9BE73275A91720012BADE /* exerciseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF9BE72275A91720012BADE /* exerciseService.swift */; };
 		4FFD5BAC2747E61500F98FBB /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFD5BAB2747E61500F98FBB /* HomeViewController.swift */; };
 		4FFD5BAE2747E62B00F98FBB /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFD5BAD2747E62B00F98FBB /* DetailsViewController.swift */; };
 		4FFD5BB02747E64400F98FBB /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFD5BAF2747E64400F98FBB /* SignInViewController.swift */; };
 		4FFD5BB22747E9D500F98FBB /* moreDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFD5BB12747E9D500F98FBB /* moreDetailsViewController.swift */; };
+		885BE02F2781F51D000D5596 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885BE02E2781F51D000D5596 /* Reachability.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,24 +56,30 @@
 		3C494987273FEA04008A0748 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4F0B86B7275D3BD600A7D4A2 /* profileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = profileViewController.swift; sourceTree = "<group>"; };
 		4F1AB07A276B9D6D008049B4 /* utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = utils.swift; sourceTree = "<group>"; };
-		4F1AB07D276BA94B008049B4 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Reachability.swift; path = "../../../../Downloads/Reachability.swift-master/Sources/Reachability.swift"; sourceTree = "<group>"; };
 		4F1CC8F527664992007256F6 /* workoutTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = workoutTableViewController.swift; sourceTree = "<group>"; };
 		4F2CE2C4275A7F1000C2BA42 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		4F2D4E292777870A000C4020 /* planDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = planDetailViewController.swift; sourceTree = "<group>"; };
 		4F4A65F52763941F0008C0D3 /* sessionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sessionViewController.swift; sourceTree = "<group>"; };
 		4F508A5D276BD37F0001B0EA /* mapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mapViewController.swift; sourceTree = "<group>"; };
+		4F5BFDE12773A915003FCF18 /* ZoomAndSnapFlowLayout.swift  .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ZoomAndSnapFlowLayout.swift  .swift"; sourceTree = "<group>"; };
+		4F5BFDE32773A953003FCF18 /* CollectionViewCell.swift  .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CollectionViewCell.swift  .swift"; sourceTree = "<group>"; };
 		4F5C38332770D08C006C7537 /* CommentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsViewController.swift; sourceTree = "<group>"; };
 		4F7AFE59276276DB00EA8427 /* codeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = codeViewController.swift; sourceTree = "<group>"; };
+		4F9B987C2780DAE400ED81CE /* realityFitLaunch.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = realityFitLaunch.storyboard; sourceTree = "<group>"; };
 		4FB5E1822749206700506494 /* ArViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArViewController.swift; sourceTree = "<group>"; };
 		4FB5E18427492C9500506494 /* reactshoe.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = reactshoe.usdz; sourceTree = "<group>"; };
 		4FB5E187274937CA00506494 /* RealityKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealityKit.framework; path = System/Library/Frameworks/RealityKit.framework; sourceTree = SDKROOT; };
 		4FB5E18C2749380000506494 /* ARKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ARKit.framework; path = System/Library/Frameworks/ARKit.framework; sourceTree = SDKROOT; };
 		4FB5E190274938EA00506494 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4FE6843B2780A1D800777D60 /* noInternetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = noInternetViewController.swift; sourceTree = "<group>"; };
+		4FED4048277797A900220D3F /* boughtPlansViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = boughtPlansViewController.swift; sourceTree = "<group>"; };
 		4FF9BE70275A90BB0012BADE /* exerciseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = exerciseModel.swift; sourceTree = "<group>"; };
 		4FF9BE72275A91720012BADE /* exerciseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = exerciseService.swift; sourceTree = "<group>"; };
 		4FFD5BAB2747E61500F98FBB /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		4FFD5BAD2747E62B00F98FBB /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		4FFD5BAF2747E64400F98FBB /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		4FFD5BB12747E9D500F98FBB /* moreDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = moreDetailsViewController.swift; sourceTree = "<group>"; };
+		885BE02E2781F51D000D5596 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		D0ABCB09D818A6889CCDF319 /* Pods_RealityFit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RealityFit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -122,6 +134,7 @@
 				3C49497E273FEA01008A0748 /* Main.storyboard */,
 				3C494984273FEA04008A0748 /* Assets.xcassets */,
 				3C494986273FEA04008A0748 /* LaunchScreen.storyboard */,
+				4F9B987C2780DAE400ED81CE /* realityFitLaunch.storyboard */,
 				4FB5E190274938EA00506494 /* Info.plist */,
 				3C494981273FEA01008A0748 /* RealityFit.xcdatamodeld */,
 			);
@@ -131,8 +144,11 @@
 		4F1AB07C276BA8C0008049B4 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
-				4F1AB07D276BA94B008049B4 /* Reachability.swift */,
+				885BE02E2781F51D000D5596 /* Reachability.swift */,
 				4F1AB07A276B9D6D008049B4 /* utils.swift */,
+				4F5BFDE12773A915003FCF18 /* ZoomAndSnapFlowLayout.swift  .swift */,
+				4F5BFDE32773A953003FCF18 /* CollectionViewCell.swift  .swift */,
+				4FE6843B2780A1D800777D60 /* noInternetViewController.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -189,6 +205,8 @@
 				4F1CC8F527664992007256F6 /* workoutTableViewController.swift */,
 				4F508A5D276BD37F0001B0EA /* mapViewController.swift */,
 				4F5C38332770D08C006C7537 /* CommentsViewController.swift */,
+				4F2D4E292777870A000C4020 /* planDetailViewController.swift */,
+				4FED4048277797A900220D3F /* boughtPlansViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -266,6 +284,7 @@
 				4FB5E18527492C9500506494 /* reactshoe.usdz in Resources */,
 				3C494988273FEA04008A0748 /* LaunchScreen.storyboard in Resources */,
 				3C494985273FEA04008A0748 /* Assets.xcassets in Resources */,
+				4F9B987D2780DAE400ED81CE /* realityFitLaunch.storyboard in Resources */,
 				3C494980273FEA01008A0748 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -337,15 +356,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F2CE2C5275A7F1000C2BA42 /* SignUpViewController.swift in Sources */,
+				4F5BFDE22773A915003FCF18 /* ZoomAndSnapFlowLayout.swift  .swift in Sources */,
 				1385CE4D2753BD6100E3954F /* userService.swift in Sources */,
 				4F5C38342770D08C006C7537 /* CommentsViewController.swift in Sources */,
-				4F1AB07E276BA94B008049B4 /* Reachability.swift in Sources */,
+				4F5BFDE42773A953003FCF18 /* CollectionViewCell.swift  .swift in Sources */,
 				4F0B86B8275D3BD600A7D4A2 /* profileViewController.swift in Sources */,
 				4FFD5BB02747E64400F98FBB /* SignInViewController.swift in Sources */,
 				4FF9BE71275A90BB0012BADE /* exerciseModel.swift in Sources */,
 				1385CE4F2753BEF400E3954F /* userModel.swift in Sources */,
 				4FFD5BAC2747E61500F98FBB /* HomeViewController.swift in Sources */,
 				4FFD5BB22747E9D500F98FBB /* moreDetailsViewController.swift in Sources */,
+				4FE6843C2780A1D800777D60 /* noInternetViewController.swift in Sources */,
+				885BE02F2781F51D000D5596 /* Reachability.swift in Sources */,
 				4F1CC8F627664992007256F6 /* workoutTableViewController.swift in Sources */,
 				4F1AB07B276B9D6D008049B4 /* utils.swift in Sources */,
 				4F508A5E276BD37F0001B0EA /* mapViewController.swift in Sources */,
@@ -356,7 +378,9 @@
 				4F7AFE5A276276DB00EA8427 /* codeViewController.swift in Sources */,
 				3C49497B273FEA01008A0748 /* SceneDelegate.swift in Sources */,
 				4FFD5BAE2747E62B00F98FBB /* DetailsViewController.swift in Sources */,
+				4F2D4E2A2777870A000C4020 /* planDetailViewController.swift in Sources */,
 				4FF9BE73275A91720012BADE /* exerciseService.swift in Sources */,
+				4FED4049277797A900220D3F /* boughtPlansViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

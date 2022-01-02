@@ -9,9 +9,9 @@ import UIKit
 
 class sessionViewController: UIViewController {
     
-    let token = UserDefaults.standard.string(forKey: "token")!
-    let nomConnected = UserDefaults.standard.string(forKey: "nom")!
-    let _id = UserDefaults.standard.string(forKey: "_id")!
+    let token = UserDefaults.standard.string(forKey: "token")
+    let nomConnected = UserDefaults.standard.string(forKey: "nom")
+    let _id = UserDefaults.standard.string(forKey: "_id")
 
 
     override func viewDidLoad() {
@@ -36,7 +36,7 @@ class sessionViewController: UIViewController {
     
  
     func isKeyPresentInUserDefaults(key: String)  {
-        if token == ""{
+        if token == nil {
             performSegue(withIdentifier: "signInSegue", sender: nil)
 
 

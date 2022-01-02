@@ -10,6 +10,8 @@ import Alamofire
 import SwiftyJSON
 import AudioToolbox
 import AVFoundation
+import AlamofireImage
+import Kingfisher
 
 
 class CommentsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -21,6 +23,7 @@ class CommentsViewController: UIViewController, UITableViewDelegate, UITableView
     var workoutId: String?
     var usernameList = [String]()
     var commentList = [String]()
+    var userImg = [String]()
     var imagePath1: String?
     var workoutCat: String?
 
@@ -34,8 +37,11 @@ class CommentsViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        initialize()
+        if reachability.connection == .unavailable {
+            print("jawek mesh behy")
+            self.showAlert(title: "Connectivity Problem", message: "Please check your internet connection ")
+        }else
+        {initialize()}
     }
     
     func initialize() {
@@ -70,17 +76,33 @@ class CommentsViewController: UIViewController, UITableViewDelegate, UITableView
         let username = cv.viewWithTag(4) as! UILabel
         
         let commentaire = cv.viewWithTag(5) as! UILabel
+        let img = cv.viewWithTag(6) as! UIImageView
+        
         
         username.text = usernameList[indexPath.row]
         
         commentaire.text = commentList[indexPath.row]
         
+        var path = String(userImg[indexPath.row]).addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+       path = path.replacingOccurrences(of: "%5C", with: "/", options: NSString.CompareOptions.literal, range: nil)
+        
+        let url = URL(string: path)!
+        img.kf.indicatorType = .activity
+        img.kf.setImage(with: url, placeholder: nil, options: [.transition(.fade(0.7))], progressBlock: nil)
+  
+        img.layer.borderWidth = 6
+            img.layer.masksToBounds = false
+            img.layer.borderColor = UIColor(red:18/255, green:19/255, blue:38/255, alpha: 1).cgColor
+            img.layer.cornerRadius = img.frame.height/2
+        img.clipsToBounds = true
+        
+            
  
         return cellA
         
         
     }
-    
+        
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return UITableView.automaticDimension
@@ -122,11 +144,13 @@ class CommentsViewController: UIViewController, UITableViewDelegate, UITableView
                     print(i)
                     let username = i["postedBy"].stringValue
                     let comment = i["text"].stringValue
+                    let photo = HOST+"/"+i["image"].stringValue
                     print(comment)
                     self.usernameList.append(username)
                     self.commentList.append(comment)
+                    self.userImg.append(photo)
 
-                    // print(image)
+                    print(self.userImg)
                 }
                  self.commentsTableView.reloadData()
                 break
@@ -166,7 +190,7 @@ class CommentsViewController: UIViewController, UITableViewDelegate, UITableView
                 print("comment added")
               
                 AudioServicesPlaySystemSound(systemSoundID)
-
+           
                 self.initialize()
             }
             else
@@ -183,3 +207,4 @@ class CommentsViewController: UIViewController, UITableViewDelegate, UITableView
     
     
 }
+

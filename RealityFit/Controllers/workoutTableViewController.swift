@@ -9,6 +9,7 @@ import UIKit
 import Alamofire
 import AlamofireImage
 import SwiftyJSON
+import Kingfisher
 
 class workoutTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
     
@@ -18,7 +19,11 @@ class workoutTableViewController: UIViewController, UITableViewDelegate, UITable
     
     let searchController = UISearchController(searchResultsController: nil)
     
-    var filteredExercises: [String] = []
+    var filteredExercisesName: [String] = []
+    var filteredExercisesCategory: [String] = []
+    var filteredExercisesImg: [String] = []
+    var filteredExercisesDesc: [String] = []
+    
     
     var exercise_id = [String]()
     var exercise_name = [String]()
@@ -88,8 +93,7 @@ class workoutTableViewController: UIViewController, UITableViewDelegate, UITable
         
         print(url)
         
-        exerciseImg.af.setImage(withURL: url)
-        
+        exerciseImg.kf.setImage(with: url, placeholder: nil, options: [.transition(.fade(0.7))], progressBlock: nil )
         
         
         
@@ -147,7 +151,11 @@ class workoutTableViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        filteredExercises = exercise_name
+        filteredExercisesName = exercise_name
+        filteredExercisesImg = exercise_image
+        filteredExercisesDesc = exercise_desc
+        filteredExercisesCategory = exercise_category
+        
     }
     
     
@@ -160,7 +168,8 @@ class workoutTableViewController: UIViewController, UITableViewDelegate, UITable
     func filterContentForSearchText(_ searchText: String) {
         
         exercise_name = []
-        for exercise in filteredExercises {
+        
+        for exercise in filteredExercisesName {
             if exercise.lowercased()
                 .contains(searchText.lowercased()) {
                 exercise_name.append(exercise)
@@ -169,7 +178,7 @@ class workoutTableViewController: UIViewController, UITableViewDelegate, UITable
         
         
         if searchText.isEmpty {
-            exercise_name = filteredExercises
+            exercise_name = filteredExercisesName
         } else {
         }
         
@@ -183,7 +192,7 @@ class workoutTableViewController: UIViewController, UITableViewDelegate, UITable
             let destination = segue.destination as! DetailsViewController
             destination.excerciseName = exercise_name[indexPath.row]
             destination.exerciseDescription = exercise_desc[indexPath.row]
-           destination.imagePath = exercise_image[indexPath.row]
+            destination.imagePath = exercise_image[indexPath.row]
             destination.exerciseId = exercise_id[indexPath.row]
             destination.exerciseCat = exercise_category[indexPath.row]
             destination.segue = false

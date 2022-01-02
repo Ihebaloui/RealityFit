@@ -7,7 +7,12 @@
 
 import UIKit
 
-class SignUpViewController: UIViewController {
+class SignUpViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    
+    var currentPhoto : UIImage?
+
+       @IBOutlet weak var photoUser: UIImageView!
     
     @IBOutlet weak var nomtextField: UITextField!
     
@@ -25,7 +30,11 @@ class SignUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        initializeHideKeyboard()
+        if reachability.connection == .unavailable {
+            print("jawek mesh behy")
+            self.showAlert(title: "Connectivity Problem", message: "Please check your internet connection ")
+        }else
+      {  initializeHideKeyboard()
         nomtextField.attributedPlaceholder = NSAttributedString(
             string: "nom",
             attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
@@ -42,8 +51,15 @@ class SignUpViewController: UIViewController {
         emailTextField.attributedPlaceholder = NSAttributedString(
              string: "Email",
              attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        }
         
         
+        
+            photoUser.layer.masksToBounds = false
+            photoUser.layer.borderColor = UIColor(red:18/255, green:19/255, blue:38/255, alpha: 1).cgColor
+            photoUser.layer.cornerRadius = photoUser.frame.height/2
+       // bgImage.layer.cornerRadius = bgImage.frame.height/2
+            photoUser.clipsToBounds = true
 
         // Do any additional setup after loading the view.
     }
@@ -120,7 +136,7 @@ class SignUpViewController: UIViewController {
             showAlert(title: "Failure", message: "Password do not match")
             return
         }
-        UserService.shareinstance.register(user: user){
+        UserService.shareinstance.registerUser(user: user, uiImage: currentPhoto!){
             (isSuccess) in
             if isSuccess{
                 
@@ -130,6 +146,12 @@ class SignUpViewController: UIViewController {
                 self.showAlert(title: "Failre", message: "Please try again")
             }
         }
+        
+        
+        
+        
+        
+        
     }
     
     
@@ -161,6 +183,81 @@ class SignUpViewController: UIViewController {
         
         
     }
+    
+    
+    
+    
+    
+    @IBOutlet weak var addImageButton: UIButton!
+    
+    @IBAction func changePhoto(_ sender: Any) {
+    showActionSheet()
+}
+    func camera()
+    {
+        let myPickerControllerCamera = UIImagePickerController()
+        myPickerControllerCamera.delegate = self
+        myPickerControllerCamera.sourceType = UIImagePickerController.SourceType.camera
+        myPickerControllerCamera.allowsEditing = true
+        self.present(myPickerControllerCamera, animated: true, completion: nil)
+
+    }
+  
+  
+  func gallery()
+  {
+
+      let myPickerControllerGallery = UIImagePickerController()
+      myPickerControllerGallery.delegate = self
+      myPickerControllerGallery.sourceType = UIImagePickerController.SourceType.photoLibrary
+      myPickerControllerGallery.allowsEditing = true
+      self.present(myPickerControllerGallery, animated: true, completion: nil)
+
+  }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        guard let selectedImage = info[.originalImage] as? UIImage else {
+            
+            return
+        }
+        
+               currentPhoto = selectedImage
+               photoUser.image = selectedImage
+        addImageButton.isHidden = true
+        
+        
+        
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    func showActionSheet(){
+
+        let actionSheetController: UIAlertController = UIAlertController(title: NSLocalizedString("Upload Image", comment: ""), message: nil, preferredStyle: .actionSheet)
+        actionSheetController.view.tintColor = UIColor.black
+        let cancelActionButton: UIAlertAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel) { action -> Void in
+            print("Cancel")
+        }
+        actionSheetController.addAction(cancelActionButton)
+
+        let saveActionButton: UIAlertAction = UIAlertAction(title: NSLocalizedString("Take Photo", comment: ""), style: .default)
+        { action -> Void in
+            self.camera()
+        }
+        actionSheetController.addAction(saveActionButton)
+
+        let deleteActionButton: UIAlertAction = UIAlertAction(title: NSLocalizedString("Choose From Gallery", comment: ""), style: .default)
+        { action -> Void in
+            self.gallery()
+        }
+        
+        actionSheetController.addAction(deleteActionButton)
+        self.present(actionSheetController, animated: true, completion: nil)
+    }
+   
+    
+    
+    
     
     
 }

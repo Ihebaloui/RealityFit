@@ -12,6 +12,9 @@ import LocalAuthentication
 
 class SignInViewController: UIViewController, GIDSignInUIDelegate, UITextFieldDelegate {
     
+    let token = UserDefaults.standard.string(forKey: "token")
+    let nomConnected = UserDefaults.standard.string(forKey: "nom")
+    let _id = UserDefaults.standard.string(forKey: "_id")
     
     @IBOutlet weak var loginLabel: UITextField!
     
@@ -19,6 +22,7 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate, UITextFieldDe
     
     @IBOutlet weak var passwordTextField: UITextField!
     
+    @IBOutlet weak var fingerprint: UIButton!
     var context = LAContext()
     var err : NSError?
     
@@ -43,7 +47,7 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate, UITextFieldDe
         
         GIDSignIn.sharedInstance().uiDelegate = self
               GIDSignIn.sharedInstance().signInSilently()
-              let gSignIn = GIDSignInButton(frame: CGRect(x: 49, y: 756, width: 159, height: 31))
+              let gSignIn = GIDSignInButton(frame: CGRect(x: 19, y: 690, width: 347, height: 31))
               view.addSubview(gSignIn)
           
       /*    let signOut = UIButton (frame: CGRect(x: 211, y: 755, width: 159, height: 31))
@@ -55,6 +59,17 @@ class SignInViewController: UIViewController, GIDSignInUIDelegate, UITextFieldDe
 
 
         // Do any additional setup after loading the view.
+        print(token)
+        if token == nil {
+            
+            fingerprint.isEnabled = false
+            fingerprint.tintColor = .gray
+
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+      
     }
     
     

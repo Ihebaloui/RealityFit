@@ -2,6 +2,30 @@ PODS:
   - Alamofire (5.4.4)
   - AlamofireImage (4.2.0):
     - Alamofire (~> 5.4)
+  - AlamofireNetworkActivityIndicator (3.1.0):
+    - Alamofire (~> 5.1)
+  - Braintree (4.22.0):
+    - Braintree/Card (= 4.22.0)
+    - Braintree/Core (= 4.22.0)
+    - Braintree/PayPal (= 4.22.0)
+    - Braintree/UI (= 4.22.0)
+  - Braintree/Card (4.22.0):
+    - Braintree/Core
+  - Braintree/Core (4.22.0)
+  - Braintree/PayPal (4.22.0):
+    - Braintree/Core
+    - Braintree/PayPalOneTouch
+  - Braintree/PayPalDataCollector (4.22.0):
+    - Braintree/Core
+    - Braintree/PayPalUtils
+  - Braintree/PayPalOneTouch (4.22.0):
+    - Braintree/Core
+    - Braintree/PayPalDataCollector
+    - Braintree/PayPalUtils
+  - Braintree/PayPalUtils (4.22.0)
+  - Braintree/UI (4.22.0):
+    - Braintree/Card
+    - Braintree/Core
   - GoogleSignIn (4.4.0):
     - "GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)"
     - "GoogleToolboxForMac/NSString+URLArguments (~> 2.1)"
@@ -15,13 +39,17 @@ PODS:
     - "GoogleToolboxForMac/NSString+URLArguments (= 2.3.2)"
   - "GoogleToolboxForMac/NSString+URLArguments (2.3.2)"
   - GTMSessionFetcher/Core (1.7.0)
+  - Kingfisher (7.1.2)
   - MapKitSearchView (2.0.0)
   - SwiftyJSON (4.3.0)
 
 DEPENDENCIES:
   - Alamofire (~> 5.4)
   - AlamofireImage (~> 4.1)
+  - AlamofireNetworkActivityIndicator (~> 3.1)
+  - Braintree (~> 4.22.0)
   - GoogleSignIn (< 5.0.0)
+  - Kingfisher (~> 7.0)
   - MapKitSearchView
   - SwiftyJSON (~> 4.0)
 
@@ -29,21 +57,27 @@ SPEC REPOS:
   trunk:
     - Alamofire
     - AlamofireImage
+    - AlamofireNetworkActivityIndicator
+    - Braintree
     - GoogleSignIn
     - GoogleToolboxForMac
     - GTMSessionFetcher
+    - Kingfisher
     - MapKitSearchView
     - SwiftyJSON
 
 SPEC CHECKSUMS:
   Alamofire: f3b09a368f1582ab751b3fff5460276e0d2cf5c9
   AlamofireImage: 34a2d90b0e5fe6a5605f85ae4b7b01e784c60192
+  AlamofireNetworkActivityIndicator: 6564782bd7b9e6c430ae67d9277af01907b01ca4
+  Braintree: e814ec196208d3e961c488cf4071de043f399cf9
   GoogleSignIn: 7ff245e1a7b26d379099d3243a562f5747e23d39
   GoogleToolboxForMac: 8bef7c7c5cf7291c687cf5354f39f9db6399ad34
   GTMSessionFetcher: 43748f93435c2aa068b1cbe39655aaf600652e91
+  Kingfisher: 44ed6a8504763f27bab46163adfac83f5deb240c
   MapKitSearchView: 27cd67b3033c31904b128cda9367cd94b48c062e
   SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
 
-PODFILE CHECKSUM: 94559efb8a27a673211399603ce5ba321d925b08
+PODFILE CHECKSUM: ba5be8460e09d264c4c2cab38422f908b5b07260
 
-COCOAPODS: 1.11.2
+COCOAPODS: 1.11.0

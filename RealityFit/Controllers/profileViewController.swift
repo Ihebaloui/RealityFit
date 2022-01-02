@@ -8,6 +8,8 @@
 import UIKit
 import SwiftyJSON
 import PhotosUI
+import AlamofireImage
+import LocalAuthentication
 
 class profileViewController: UIViewController {
 
@@ -34,6 +36,7 @@ class profileViewController: UIViewController {
     let prenomConnected = UserDefaults.standard.string(forKey: "prenom")!
 
     let _id = UserDefaults.standard.string(forKey: "_id")!
+    let profilepic = UserDefaults.standard.string(forKey: "image")!
     
     
 
@@ -46,8 +49,17 @@ class profileViewController: UIViewController {
             profileImage.layer.masksToBounds = false
             profileImage.layer.borderColor = UIColor(red:18/255, green:19/255, blue:38/255, alpha: 1).cgColor
             profileImage.layer.cornerRadius = profileImage.frame.height/2
-        bgImage.layer.cornerRadius = bgImage.frame.height/2
+       // bgImage.layer.cornerRadius = bgImage.frame.height/2
             profileImage.clipsToBounds = true
+        
+        var path = String(HOST+"/"+profilepic).addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+       path = path.replacingOccurrences(of: "%5C", with: "/", options: NSString.CompareOptions.literal, range: nil)
+
+        let url = URL(string: path)!
+       
+
+        print(url)
+        profileImage.af.setImage(withURL:url )
         
     
      intialiseProfile()
@@ -69,22 +81,22 @@ class profileViewController: UIViewController {
         UserService.shareinstance.getProfile(_id: _id,completionHandler: {
             isSuccess, user in
             if isSuccess{
-                
+
                 self.user = user
                 self.usernameTF.text = self.user?.nom
                 self.emailTF.text = self.user?.email
                 print(self.user)
             }
         })
-                                           
+
     }
    
     
     @IBAction func signOut(_ sender: Any) {
       
-        UserDefaults.standard.setValue("", forKey: "token")
-        UserDefaults.standard.setValue("", forKey: "_id")
-        UserDefaults.standard.setValue("", forKey: "nom")
+        UserDefaults.standard.setValue(nil, forKey: "token")
+        UserDefaults.standard.setValue(nil, forKey: "_id")
+        UserDefaults.standard.setValue(nil, forKey: "nom")
         performSegue(withIdentifier: "signInSegue2", sender: nil)
         
     }
@@ -97,34 +109,31 @@ class profileViewController: UIViewController {
 //
 //}
     
-    
+//
     @IBAction func confirmUpdate(_ sender: Any) {
-        let nom =  usernameTF.text
-        let email = emailTF.text
-        let password = passwordTF.text
-        let confirmPassword = confirmpasswordTF.text
-        print("testttttttt")
-        print(_id)
-   
-        let user = userModel(_id:"",nom: nom, prenom: "", email: email, password: password,gender: "", age: "", weight: "", height: "",   experience: "", goal: "", token: "")
-        if( nom!.isEmpty || email!.isEmpty || password!.isEmpty){
-                   showAlert(title: "Warning", message: "Please make sure to fill out all the form before registering")
-                   return
-               }else
-        if (!(confirmPassword! == password)){
-                    showAlert(title: "Failure", message: "Password do not match")
-                   return
-                                }
-        UserService.shareinstance.updateProfile(_id: _id, user: user,completionHandler:{
-                   (isSuccess) in
-                   if isSuccess{
-                    
-                       self.performSegue(withIdentifier: "homeSegue4", sender: IndexPath.self)
+        
+        let localString = "Biometric Authentication"
+        let context = LAContext()
+           var error: NSError?
 
-                   } else {
-                       self.showAlert(title: "Failre", message: "Please try again")
+           if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
+               let reason = "Identify yourself!"
+
+               context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) {
+                   [weak self] success, authenticationError in
+
+                   DispatchQueue.main.async {
+                       if success {
+                           self!.updateprofile()
+                       } else {
+                           // error
+                       }
                    }
-               })
+               }
+           } else {
+               // no biometry
+    }
+   
     }
     
 
@@ -145,6 +154,37 @@ class profileViewController: UIViewController {
     
     @IBAction func changeBgPic(_ sender: Any) {
         present(libraryPicker!, animated: true, completion: nil)
+    }
+    
+    
+    
+    func  updateprofile()  {
+        let nom =  usernameTF.text
+        let email = emailTF.text
+        let password = passwordTF.text
+        let confirmPassword = confirmpasswordTF.text
+        print("testttttttt")
+        print(_id)
+
+        let user = userModel(_id:"",nom: nom, prenom: "", email: email, password: password,gender: "", age: "", weight: "", height: "",   experience: "", goal: "", token: "")
+        if( nom!.isEmpty || email!.isEmpty || password!.isEmpty){
+                   showAlert(title: "Warning", message: "Please make sure to fill out all the form before registering")
+                   return
+               }else
+        if (!(confirmPassword! == password)){
+                    showAlert(title: "Failure", message: "Password do not match")
+                   return
+                                }
+        UserService.shareinstance.updateProfile(_id: _id, user: user,completionHandler:{
+                   (isSuccess) in
+                   if isSuccess{
+
+                       self.performSegue(withIdentifier: "homeSegue4", sender: IndexPath.self)
+
+                   } else {
+                       self.showAlert(title: "Failre", message: "Please try again")
+                   }
+               })
     }
     
 }
@@ -174,6 +214,7 @@ extension profileViewController: UIImagePickerControllerDelegate, UINavigationCo
             self.profileImage.image = image
             self.bgImage.image = image
         }
+        
         picker.dismiss(animated: true, completion: nil)
     }
 }

@@ -11,7 +11,7 @@ import FoundationNetworking
 #endif
 import Alamofire
 import SwiftyJSON
-
+import UIKit
 
 
 class UserService{
@@ -52,6 +52,54 @@ class UserService{
         }
     }
     
+    func registerUser(user: userModel, uiImage: UIImage, completed: @escaping (Bool) -> Void ) {
+            print("hi")
+        let headers: HTTPHeaders = [.contentType("application/json")]
+            AF.upload(multipartFormData: { multipartFormData in
+                multipartFormData.append(uiImage.jpegData(compressionQuality: 0.5)!, withName: "image" , fileName: "image.jpeg", mimeType: "image/jpeg")
+                
+                let ParametersS = [ "nom": user.nom!,
+                                    "prenom": user.prenom!,
+                                    "email": user.email!,
+                                    "password": user.password!,
+                                    
+                ] as [String : Any]
+                for (key, value) in ParametersS {
+                    if let temp = value as? String {
+                        multipartFormData.append(temp.data(using: .utf8)!, withName: key)
+                    }
+                    if let temp = value as? Int {
+                        multipartFormData.append("\(temp)".data(using: .utf8)!, withName: key)
+                    }
+                    if let temp = value as? Double {
+                        multipartFormData.append("\(temp)".data(using: .utf8)!, withName: key)
+                    
+                    }
+                    
+                    print(multipartFormData)
+                }
+                },to: HOST+"/users/register",
+            method: .post,headers: headers)
+                .validate(statusCode: 200..<300)
+                .validate(contentType: ["application/json"])
+                .responseData { response in
+                    switch response.result {
+                    case .success:
+                        let jsonData = JSON(response.data!)
+                        UserDefaults.standard.setValue(jsonData["_id"].stringValue, forKey: "_id")
+                        UserDefaults.standard.setValue(jsonData["nom"].stringValue, forKey: "nom")
+                        UserDefaults.standard.setValue(jsonData["prenom"].stringValue, forKey: "prenom")
+                        UserDefaults.standard.setValue(jsonData["isVerified"].stringValue, forKey: "isVerified")
+                        print("Success")
+                        completed(true)
+                    case let .failure(error):
+                        completed(false)
+                        print(error)
+                    }
+                }
+        }
+    
+    
     
     func login(email: String, password: String,completionHandler:@escaping (Bool)->()){
          let headers: HTTPHeaders = [.contentType("application/json")]
@@ -67,6 +115,7 @@ class UserService{
                          UserDefaults.standard.setValue(jsonData["_id"].stringValue, forKey: "_id")
                          UserDefaults.standard.setValue(jsonData["nom"].stringValue, forKey: "nom")
                          UserDefaults.standard.setValue(jsonData["prenom"].stringValue, forKey: "prenom")
+                         UserDefaults.standard.setValue(jsonData["image"].stringValue, forKey: "image")
 
                          print(jsonData["nom"].stringValue)
                          completionHandler(true)
@@ -102,6 +151,8 @@ class UserService{
                     if response.response?.statusCode == 200{
                         let jsonData = JSON(response.data!)
                         let user = self.makeItem(jsonItem: jsonData)
+                        UserDefaults.standard.setValue(jsonData["nom"].stringValue, forKey: "nom")
+                        UserDefaults.standard.setValue(jsonData["prenom"].stringValue, forKey: "prenom")
                         completionHandler(true,user)
 
                         print(user)

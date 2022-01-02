@@ -30,12 +30,17 @@ class DetailsViewController: UIViewController {
     
     
     override func viewDidLoad() {
-     loadImage()
+     
       //  print(exerciseDescription)
         super.viewDidLoad()
-        exerciseNameLabel.text = excerciseName
+        if reachability.connection == .unavailable {
+            print("jawek mesh behy")
+            self.showAlert(title: "Connectivity Problem", message: "Please check your internet connection ")
+        }else {
+            loadImage()
+            exerciseNameLabel.text = excerciseName
         exercise_description.text = exerciseDescription
-      
+      }
        
       //
         print(exerciseId)

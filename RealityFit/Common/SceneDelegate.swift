@@ -27,11 +27,29 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     func sceneDidBecomeActive(_ scene: UIScene) {
+        
+        if reachability.connection == .unavailable {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "noInternet") as! noInternetViewController
+            self.window?.rootViewController = vc
+//
+//            let secondVC = storyboard?.instantiateViewController(withIdentifier: "noInternet") as! noInternetViewController
+//
+        }
         // Called when the scene has moved from an inactive state to an active state.
         // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
+       
     }
 
     func sceneWillResignActive(_ scene: UIScene) {
+        if reachability.connection == .unavailable {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "noInternet") as! noInternetViewController
+            self.window?.rootViewController = vc
+//
+//            let secondVC = storyboard?.instantiateViewController(withIdentifier: "noInternet") as! noInternetViewController
+//
+        }
         // Called when the scene will move from an active state to an inactive state.
         // This may occur due to temporary interruptions (ex. an incoming phone call).
     }
@@ -50,6 +68,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
     }
 
+    
 
 }
 

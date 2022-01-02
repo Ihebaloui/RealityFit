@@ -8,11 +8,15 @@
 import UIKit
 import CoreData
 import GoogleSignIn
-
+import Braintree
+import AlamofireNetworkActivityIndicator
 
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
+    let token = UserDefaults.standard.string(forKey: "token")
+    let nomConnected = UserDefaults.standard.string(forKey: "nom")
+    let _id = UserDefaults.standard.string(forKey: "_id")
 
 
 
@@ -20,6 +24,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         // Override point for customization after application launch.
         GIDSignIn.sharedInstance().clientID = "32355301425-44p8obiel7lprd3ei31blmt6imnpcsob.apps.googleusercontent.com"
         GIDSignIn.sharedInstance().delegate = self
+        BTAppSwitch.setReturnURLScheme("esprit.RealityFit.payments")
+        NetworkActivityIndicatorManager.shared.isEnabled = true
+        NetworkActivityIndicatorManager.shared.startDelay = 1.0
+
+
         return true
     }
 
@@ -28,6 +37,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             return GIDSignIn.sharedInstance().handle(url as URL?,
                                                      sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication]as? String,
                                                      annotation: options[UIApplication.OpenURLOptionsKey.annotation])
+        if url.scheme?.localizedCaseInsensitiveCompare("ESPRIT.TN.ELearningProjectAbderrahmen-hazem.payments") == .orderedSame {
+           //return BTAppSwitch.handleOpen(url, options: options)
+       }
+        return false
         }
         func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
             if let error = error{
@@ -43,6 +56,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 
             let profilePicUrl = user.profile?.imageURL(withDimension: 320)
             print (fullName)
+            
+            
         }
     }
         func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
@@ -54,14 +69,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
         // Called when a new scene session is being created.
         // Use this method to select a configuration to create the new scene with.
+       
+        
+     
         return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
+        
+      
+
+        
     }
+    
+    
 
     func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
         // Called when the user discards a scene session.
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
+    
 
     // MARK: - Core Data stack
 

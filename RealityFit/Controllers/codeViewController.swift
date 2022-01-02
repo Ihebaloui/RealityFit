@@ -9,7 +9,7 @@ import UIKit
 
 class codeViewController: UIViewController, UITextFieldDelegate {
     
-    let isVerified = UserDefaults.standard.string(forKey: "isVerified")!
+    let isVerified = UserDefaults.standard.string(forKey: "isVerified")
     var x :String!="false"
     
 
@@ -50,12 +50,12 @@ class codeViewController: UIViewController, UITextFieldDelegate {
         self.fifthDigit.addTarget(self, action: #selector(self.changeCharacter), for: .editingChanged)
         self.sixthDigit.addTarget(self, action: #selector(self.changeCharacter), for: .editingChanged)
         
-        
-        
-      let components =  email!.components(separatedBy: "@")
-        let result = hideMidChars(components.first!) + "@" + components.last!
-        usernameEmail.text = result
         print(_id)
+//
+//      let components =  email!.components(separatedBy: "@")
+//        let result = hideMidChars(components.first!) + "@" + components.last!
+//        usernameEmail.text = result
+//        print(_id)
       
     }
     

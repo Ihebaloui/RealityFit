@@ -38,14 +38,17 @@ class mapViewController: UIViewController , UISearchBarDelegate{
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(swipeAction(swipe:)))
+        if reachability.connection == .unavailable {
+            print("jawek mesh behy")
+            self.showAlert(title: "Connectivity Problem", message: "Please check your internet connection ")
+        }else
+      {  let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(swipeAction(swipe:)))
         leftSwipe.direction = .left
         self.view.addGestureRecognizer(leftSwipe)
         configureLocationManager()
         configureMapView()
         enableLocationServices()
-        createAnnotation(locations: annotationsLocation)
+        createAnnotation(locations: annotationsLocation)}
     }
     
     // MARK: - Selectors
