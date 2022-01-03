@@ -14,6 +14,8 @@ target 'RealityFit' do
   pod 'Braintree', '~> 4.22.0'
   pod 'AlamofireNetworkActivityIndicator', '~> 3.1'
   pod 'Kingfisher', '~> 7.0'	
+  pod 'AppCenter'
+
 
 
 end

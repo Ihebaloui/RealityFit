@@ -67,6 +67,11 @@
 			<key>orderHint</key>
 			<integer>7</integer>
 		</dict>
+		<key>Kingfisher.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>13</integer>
+		</dict>
 		<key>MapKitSearchView.xcscheme</key>
 		<dict>
 			<key>isShown</key>

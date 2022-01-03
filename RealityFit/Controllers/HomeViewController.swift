@@ -36,6 +36,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     var plan_day5 = [String]()
     var plan_payment = [String]()
     var IdPlan = [String]()
+    var exercise_id = [String]()
     
     var user_image = [String]()
     var exercise_description = [String]()
@@ -278,6 +279,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         if segue.identifier == "detailsSegue" {
             let indexPath = sender as! IndexPath
             let destination = segue.destination as! DetailsViewController
+            destination.exerciseId = exercise_id[indexPath.row]
             destination.excerciseName = exercise_name[indexPath.row]
             destination.exerciseDescription = exercise_description[indexPath.row]
            destination.imagePath = exercise_image[indexPath.row]
@@ -315,10 +317,12 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                 
                 for i in myresult!.arrayValue {
                     //print(i)
+                    let id = i["_id"].stringValue
                     let nom = i["nom"].stringValue
                     let bodypart = i["bodyPart"].stringValue
                     let description = i["description"].stringValue
                     let image = HOST+"/"+i["image"].stringValue
+                    self.exercise_id.append(id)
                     self.exercise_name.append(nom)
                     self.exercise_category.append(bodypart)
                     self.exercise_description.append(description)

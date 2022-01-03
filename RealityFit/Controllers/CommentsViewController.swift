@@ -64,6 +64,7 @@ class CommentsViewController: UIViewController, UITableViewDelegate, UITableView
        // print(commentList)
         
         commentsTableView.reloadData()
+        initializeHideKeyboard()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

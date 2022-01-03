@@ -41,6 +41,7 @@ class workoutTableViewController: UIViewController, UITableViewDelegate, UITable
             showSpinner()
         }else
         {
+           // initializeHideKeyboard()
             loadExercises()
             
         }
@@ -93,8 +94,8 @@ class workoutTableViewController: UIViewController, UITableViewDelegate, UITable
         
         print(url)
         
-        exerciseImg.kf.setImage(with: url, placeholder: nil, options: [.transition(.fade(0.7))], progressBlock: nil )
-        
+//        exerciseImg.kf.setImage(with: url, placeholder: nil, options: [.transition(.fade(0.7))], progressBlock: nil )
+        exerciseImg.af.setImage(withURL: url )
         
         
         return cellA

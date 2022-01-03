@@ -10,6 +10,9 @@ import CoreData
 import GoogleSignIn
 import Braintree
 import AlamofireNetworkActivityIndicator
+import AppCenter
+import AppCenterAnalytics
+import AppCenterCrashes
 
 
 @main
@@ -22,6 +25,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        AppCenter.start(withAppSecret: "1b6c1eec-896c-456d-8d9f-805f8aac7774", services:[
+          Analytics.self,
+          Crashes.self
+        ])
+
         GIDSignIn.sharedInstance().clientID = "32355301425-44p8obiel7lprd3ei31blmt6imnpcsob.apps.googleusercontent.com"
         GIDSignIn.sharedInstance().delegate = self
         BTAppSwitch.setReturnURLScheme("esprit.RealityFit.payments")
